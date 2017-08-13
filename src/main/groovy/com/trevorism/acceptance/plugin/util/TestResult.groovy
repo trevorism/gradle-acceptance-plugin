@@ -15,6 +15,4 @@ class TestResult {
     String then
     boolean passing
     int durationMillis
-    String errorMessage
-
 }

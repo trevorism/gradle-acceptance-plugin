@@ -1,5 +1,6 @@
 package com.trevorism.acceptance.plugin.util
 
+import com.google.gson.Gson
 import com.trevorism.event.DefaultEventProducer
 import com.trevorism.event.EventProducer
 import org.junit.Test
@@ -9,6 +10,15 @@ import org.junit.Test
  */
 class ResultParserTest {
     EventProducer<TestResult> producer = new DefaultEventProducer<TestResult>()
+
+    @Test
+    void testParseError(){
+        List<TestResult> results = ResultParser.parseResult(SampleDataProvider.provideError())
+        Gson gson = new Gson()
+        String json = gson.toJson(results[3])
+        println json
+        //producer.sendEvent("testTopic1", results[3])
+    }
 
     @Test
     void testParseResult() {
@@ -34,7 +44,7 @@ class ResultParserTest {
                 "Given the datastore application is alive And a test object is defined And the object is created",
                 "",
                 "Then the object can found by listing all objects And the object can be retrieved by id",
-                true, 1653, "")
+                true, 1653)
     }
 
     private static TestResult firstTestResult() {
@@ -42,7 +52,7 @@ class ResultParserTest {
                 "Given the datastore application is alive",
                 "When I navigate to \"http://datastore.trevorism.com\"",
         "Then the API returns an array, letting me know where I can go next",
-        true, 476, "")
+        true, 476)
 
     }
 
@@ -52,9 +62,7 @@ class ResultParserTest {
                 "Given the datastore application is alive",
                 "When I navigate to /ping on \"https://trevorism-gcloud.appspot.com\"",
                 "Then pong is returned, to indicate the service is alive",
-                false, 150, "Assertion failed:"
-
-        )
+                false, 150)
 
     }
 }
