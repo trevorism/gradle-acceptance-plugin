@@ -14,7 +14,7 @@ class AcceptancePlugin implements Plugin<Project>{
     void apply(Project project) {
         project.apply plugin: "com.commercehub.cucumber-jvm"
         project.addCucumberSuite "acceptance"
-
+        project.ext.sendEvents = true
         project.acceptance{
             junitReport = true
         }
@@ -29,7 +29,8 @@ class AcceptancePlugin implements Plugin<Project>{
             dependsOn "sendAcceptanceTestEvents"
         }
 
-
+        if(project.ext.sendEvents)
+            project.tasks."acceptance".finalizedBy("sendAcceptanceTestEvents")
 
     }
 
