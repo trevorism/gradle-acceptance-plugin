@@ -40,7 +40,7 @@ class ResultParser {
         testResult.durationMillis = (int) (duration / MILLION)
     }
 
-    private TestResult initalizeTestResult(String name, String feature) {
+    private static TestResult initalizeTestResult(String name, String feature) {
         return new TestResult(name, "", "", "", true, 0,null, feature)
     }
 

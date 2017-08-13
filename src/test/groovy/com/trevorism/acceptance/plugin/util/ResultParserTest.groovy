@@ -9,8 +9,7 @@ class ResultParserTest {
 
     @Test
     void testParseResult() {
-        ResultParser parser = new ResultParser()
-        List<TestResult> results = parser.parseResult(SampleDataProvider.provideGivenWhenThen())
+        List<TestResult> results = ResultParser.parseResult(SampleDataProvider.provideGivenWhenThen())
 
         assert results
         assert results.size() == 4
@@ -20,8 +19,7 @@ class ResultParserTest {
 
     @Test
     void testParseResultWithAnds() {
-        ResultParser parser = new ResultParser()
-        List<TestResult> results = parser.parseResult(SampleDataProvider.provideGivenAndAnd())
+        List<TestResult> results = ResultParser.parseResult(SampleDataProvider.provideGivenAndAnd())
 
         assert results
         assert results.size() == 3
