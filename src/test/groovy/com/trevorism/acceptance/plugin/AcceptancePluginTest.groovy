@@ -12,7 +12,6 @@ class AcceptancePluginTest {
     @Test
     void testApply() {
         Project project = newProject()
-        assert project.tasks.findByPath("acceptanceTest")
         assert project.tasks.findByPath("sendAcceptanceTestEvents") instanceof SendEvent
         assert project.tasks.findByPath("acceptance")
     }

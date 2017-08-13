@@ -32,7 +32,6 @@ class ResultParser {
                 testResult."${currentStatement}" += " "
             if (step.result.status == "failed") {
                 testResult.passing = false
-                testResult.errorMessage = step.result.error_message
             }
             duration += step.result.duration
             testResult."${currentStatement}" += "${step.keyword}${step.name}"
@@ -41,7 +40,7 @@ class ResultParser {
     }
 
     private static TestResult initalizeTestResult(String name, String feature) {
-        return new TestResult(name, "", "", "", true, 0,null, feature)
+        return new TestResult(name, "", "", "", true, 0, feature)
     }
 
     private static String getCurrentStatement(String keyword, String existingStatement){

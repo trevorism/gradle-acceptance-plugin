@@ -6,6 +6,231 @@ package com.trevorism.acceptance.plugin.util
 class SampleDataProvider {
     private SimpleDataProvider(){}
 
+    static String provideError(){
+        return """[
+  {
+    "line": 1,
+    "elements": [
+      {
+        "line": 4,
+        "name": "ContextRoot",
+        "description": "",
+        "id": "context-root-of-datastore;contextroot",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 375234526,
+              "status": "passed"
+            },
+            "line": 5,
+            "name": "the datastore application is alive",
+            "match": {
+              "location": "ContextRootStepDefinition.groovy:8"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 78943760,
+              "status": "passed"
+            },
+            "line": 6,
+            "name": "I navigate to \\"http://datastore.trevorism.com\\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "http://datastore.trevorism.com",
+                  "offset": 15
+                }
+              ],
+              "location": "ContextRootStepDefinition.groovy:18"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 11499589,
+              "status": "passed"
+            },
+            "line": 7,
+            "name": "the API returns an array, letting me know where I can go next",
+            "match": {
+              "location": "ContextRootStepDefinition.groovy:26"
+            },
+            "keyword": "Then "
+          }
+        ]
+      },
+      {
+        "line": 9,
+        "name": "ContextRoot on app engine",
+        "description": "",
+        "id": "context-root-of-datastore;contextroot-on-app-engine",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 68564320,
+              "status": "passed"
+            },
+            "line": 10,
+            "name": "the datastore application is alive",
+            "match": {
+              "location": "ContextRootStepDefinition.groovy:8"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 553503466,
+              "status": "passed"
+            },
+            "line": 11,
+            "name": "I navigate to \\"https://trevorism-gcloud.appspot.com\\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "https://trevorism-gcloud.appspot.com",
+                  "offset": 15
+                }
+              ],
+              "location": "ContextRootStepDefinition.groovy:18"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 119467,
+              "status": "passed"
+            },
+            "line": 12,
+            "name": "the API returns an array, letting me know where I can go next",
+            "match": {
+              "location": "ContextRootStepDefinition.groovy:26"
+            },
+            "keyword": "Then "
+          }
+        ]
+      },
+      {
+        "line": 14,
+        "name": "Ping",
+        "description": "",
+        "id": "context-root-of-datastore;ping",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 67237664,
+              "status": "passed"
+            },
+            "line": 15,
+            "name": "the datastore application is alive",
+            "match": {
+              "location": "ContextRootStepDefinition.groovy:8"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 94718860,
+              "status": "passed"
+            },
+            "line": 16,
+            "name": "I navigate to /ping on \\"http://datastore.trevorism.com\\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "http://datastore.trevorism.com",
+                  "offset": 24
+                }
+              ],
+              "location": "ContextRootStepDefinition.groovy:22"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 9509888,
+              "error_message": "Assertion failed: \\n\\nassert pingContent \\u003d\\u003d \\"gnoppy\\"\\n       |           |\\n       pong        false\\n\\r\\n\\tat com.trevorism.gcloud.ContextRootStepDefinition\$_run_closure5.doCall(ContextRootStepDefinition.groovy:32)\\r\\n\\tat âœ½.Then pong is returned, to indicate the service is alive(features/ContextRoot.feature:17)\\r\\n",
+              "status": "failed"
+            },
+            "line": 17,
+            "name": "pong is returned, to indicate the service is alive",
+            "match": {
+              "location": "ContextRootStepDefinition.groovy:31"
+            },
+            "keyword": "Then "
+          }
+        ]
+      },
+      {
+        "line": 19,
+        "name": "Ping on app engine",
+        "description": "",
+        "id": "context-root-of-datastore;ping-on-app-engine",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 64580084,
+              "status": "passed"
+            },
+            "line": 20,
+            "name": "the datastore application is alive",
+            "match": {
+              "location": "ContextRootStepDefinition.groovy:8"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 47504497,
+              "status": "passed"
+            },
+            "line": 21,
+            "name": "I navigate to /ping on \\"https://trevorism-gcloud.appspot.com\\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "https://trevorism-gcloud.appspot.com",
+                  "offset": 24
+                }
+              ],
+              "location": "ContextRootStepDefinition.groovy:22"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 572306,
+              "error_message": "Assertion failed: \\n\\nassert pingContent \\u003d\\u003d \\"gnoppy\\"\\n       |           |\\n       pong        false\\n\\r\\n\\tat com.trevorism.gcloud.ContextRootStepDefinition\$_run_closure5.doCall(ContextRootStepDefinition.groovy:32)\\r\\n\\tat âœ½.Then pong is returned, to indicate the service is alive(features/ContextRoot.feature:22)\\r\\n",
+              "status": "failed"
+            },
+            "line": 22,
+            "name": "pong is returned, to indicate the service is alive",
+            "match": {
+              "location": "ContextRootStepDefinition.groovy:31"
+            },
+            "keyword": "Then "
+          }
+        ]
+      }
+    ],
+    "name": "Context Root of Datastore",
+    "description": "In order to use the datastore API, it must be available",
+    "id": "context-root-of-datastore",
+    "keyword": "Feature",
+    "uri": "features/ContextRoot.feature"
+  }
+]"""
+    }
+
     static String provideGivenAndAnd(){
         return """[
   {

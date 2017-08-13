@@ -1,11 +1,14 @@
 package com.trevorism.acceptance.plugin.util
 
+import com.trevorism.event.DefaultEventProducer
+import com.trevorism.event.EventProducer
 import org.junit.Test
 
 /**
  * @author tbrooks
  */
 class ResultParserTest {
+    EventProducer<TestResult> producer = new DefaultEventProducer<TestResult>()
 
     @Test
     void testParseResult() {
@@ -31,7 +34,7 @@ class ResultParserTest {
                 "Given the datastore application is alive And a test object is defined And the object is created",
                 "",
                 "Then the object can found by listing all objects And the object can be retrieved by id",
-                true, 1653, null, "Crud on an object")
+                true, 1653, "Crud on an object")
     }
 
     private static TestResult firstTestResult() {
@@ -39,7 +42,7 @@ class ResultParserTest {
                 "Given the datastore application is alive",
                 "When I navigate to \"http://datastore.trevorism.com\"",
         "Then the API returns an array, letting me know where I can go next",
-        true, 476,null,"Context Root of Datastore")
+        true, 476,"Context Root of Datastore")
 
     }
 
@@ -50,7 +53,6 @@ class ResultParserTest {
                 "When I navigate to /ping on \"https://trevorism-gcloud.appspot.com\"",
                 "Then pong is returned, to indicate the service is alive",
                 false, 150,
-                "Assertion failed:",
                 "Context Root of Datastore"
         )
 

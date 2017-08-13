@@ -3,7 +3,6 @@ package com.trevorism.acceptance.plugin
 import com.trevorism.acceptance.plugin.tasks.SendEvent
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import org.gradle.api.tasks.testing.Test
 
 /**
  * @author tbrooks
