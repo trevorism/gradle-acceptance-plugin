@@ -33,5 +33,6 @@ class AcceptancePluginTest {
 
             apply plugin: "com.trevorism.gradle.acceptance"
         }
+        return project
     }
 }
