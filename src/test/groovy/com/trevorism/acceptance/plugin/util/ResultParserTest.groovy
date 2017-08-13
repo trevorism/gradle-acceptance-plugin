@@ -30,30 +30,30 @@ class ResultParserTest {
     }
 
     private static TestResult andTestResult() {
-        new TestResult("Create a test object",
+        new TestResult( "Crud on an object", "Create a test object",
                 "Given the datastore application is alive And a test object is defined And the object is created",
                 "",
                 "Then the object can found by listing all objects And the object can be retrieved by id",
-                true, 1653, "Crud on an object")
+                true, 1653, "")
     }
 
     private static TestResult firstTestResult() {
-        new TestResult("ContextRoot",
+        new TestResult("Context Root of Datastore", "ContextRoot",
                 "Given the datastore application is alive",
                 "When I navigate to \"http://datastore.trevorism.com\"",
         "Then the API returns an array, letting me know where I can go next",
-        true, 476,"Context Root of Datastore")
+        true, 476, "")
 
     }
 
 
     private static TestResult fourthTestResult() {
-        new TestResult("Ping on app engine",
+        new TestResult("Context Root of Datastore", "Ping on app engine",
                 "Given the datastore application is alive",
                 "When I navigate to /ping on \"https://trevorism-gcloud.appspot.com\"",
                 "Then pong is returned, to indicate the service is alive",
-                false, 150,
-                "Context Root of Datastore"
+                false, 150, "Assertion failed:"
+
         )
 
     }
