@@ -16,21 +16,17 @@ class AcceptancePlugin implements Plugin<Project>{
         project.addCucumberSuite "acceptance"
         project.ext.sendEvents = true
         project.acceptance{
+            group = "verification"
+            description = "Runs acceptance tests."
+            ignoreFailures = true
             junitReport = true
+            finalizedBy("sendAcceptanceTestEvents")
         }
 
         project.task("sendAcceptanceTestEvents", type: SendEvent){
             dependsOn "acceptance"
         }
 
-        project.task("acceptanceTest", type: Test){
-            group = "verification"
-            description = "Runs cucumber tests."
-            dependsOn "sendAcceptanceTestEvents"
-        }
-
-        if(project.ext.sendEvents)
-            project.tasks."acceptance".finalizedBy("sendAcceptanceTestEvents")
 
     }
 
