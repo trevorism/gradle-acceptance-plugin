@@ -9,7 +9,7 @@ class ResultParser {
 
     static final int MILLION = 1000 * 1000
 
-    List<TestResult> parseResult(String jsonText){
+    static List<TestResult> parseResult(String jsonText){
         JsonSlurper slurper = new JsonSlurper()
         def result = slurper.parseText(jsonText)[0]
         String feature = result.name
