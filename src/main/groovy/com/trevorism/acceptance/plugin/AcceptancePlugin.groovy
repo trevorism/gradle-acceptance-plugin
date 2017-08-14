@@ -19,7 +19,6 @@ class AcceptancePlugin implements Plugin<Project>{
             description = "Runs acceptance tests."
             ignoreFailures = true
             junitReport = true
-            finalizedBy("sendAcceptanceTestEvents")
         }
 
         project.task("sendAcceptanceTestEvents", type: SendEvent){
