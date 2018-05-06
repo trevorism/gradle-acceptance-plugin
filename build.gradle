@@ -4,7 +4,7 @@ plugins{
     id "maven-publish"
 }
 
-version = "1.2"
+version = "1.2.1"
 
 repositories {
 	mavenCentral()
@@ -18,10 +18,9 @@ repositories {
 
 dependencies {
 	compile gradleApi()
-    compile "com.commercehub:gradle-cucumber-jvm-plugin:0.11"
+    compile "com.commercehub:gradle-cucumber-jvm-plugin:0.13"
     compile 'com.trevorism:eventhub-client:1.0.0'
-
-	compile 'org.codehaus.groovy:groovy-all:2.4.11'
+	compile 'org.codehaus.groovy:groovy-all:2.4.12'
 	testCompile 'junit:junit:4.12'
 }
 

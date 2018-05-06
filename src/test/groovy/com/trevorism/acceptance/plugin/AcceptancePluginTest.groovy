@@ -26,7 +26,7 @@ class AcceptancePluginTest {
                     }
                 }
                 dependencies {
-                    classpath "com.commercehub:gradle-cucumber-jvm-plugin:0.11"
+                    classpath "com.commercehub:gradle-cucumber-jvm-plugin:0.13"
                 }
             }
 
