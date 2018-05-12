@@ -1,23 +1,23 @@
 package com.trevorism.acceptance.plugin.util
 
 import com.google.gson.Gson
-import com.trevorism.event.DefaultEventProducer
 import com.trevorism.event.EventProducer
+import com.trevorism.event.PingingEventProducer
 import org.junit.Test
 
 /**
  * @author tbrooks
  */
 class ResultParserTest {
-    EventProducer<TestResult> producer = new DefaultEventProducer<TestResult>()
-
     @Test
     void testParseError(){
         List<TestResult> results = ResultParser.parseResult(SampleDataProvider.provideError())
         Gson gson = new Gson()
         String json = gson.toJson(results[3])
-        println json
-        //producer.sendEvent("testTopic1", results[3])
+        assert json.contains("Context Root of Datastore")
+        assert json.contains("Ping on app engine")
+        assert json.contains("Given the datastore application is alive")
+
     }
 
     @Test
