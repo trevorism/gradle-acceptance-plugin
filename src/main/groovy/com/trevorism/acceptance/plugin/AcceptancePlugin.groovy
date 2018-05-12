@@ -13,7 +13,6 @@ class AcceptancePlugin implements Plugin<Project>{
     void apply(Project project) {
         project.apply plugin: "com.commercehub.cucumber-jvm"
         project.addCucumberSuite "acceptance"
-        project.ext.sendEvents = true
         project.acceptance{
             group = "verification"
             description = "Runs acceptance tests."
