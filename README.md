@@ -8,14 +8,11 @@ buildscript {
 	repositories {
         mavenCentral()
         maven {
-            url "https://plugins.gradle.org/m2/"
-        }
-        flatDir {
-            dirs ('C:\\gradle-acceptance-plugin\\build\\libs')
+            url uri("http://trevorism-build.eastus.cloudapp.azure.com/nexus/repository/maven-releases")
         }
     }
 	dependencies {
-        classpath ':gradle-acceptance-plugin:1.3.0'
+        classpath 'com.trevorism:gradle-acceptance-plugin:1.3.0'
     }
 }
 
