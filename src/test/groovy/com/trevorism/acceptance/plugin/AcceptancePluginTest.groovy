@@ -9,6 +9,7 @@ import org.junit.Test
  * @author tbrooks
  */
 class AcceptancePluginTest {
+
     @Test
     void testApply() {
         Project project = newProject()
