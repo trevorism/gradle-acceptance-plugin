@@ -1,8 +1,6 @@
 package com.trevorism.acceptance.plugin.util
 
 import com.google.gson.Gson
-import com.trevorism.event.EventProducer
-import com.trevorism.event.PingingEventProducer
 import org.junit.Test
 
 /**

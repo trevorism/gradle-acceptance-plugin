@@ -33,7 +33,9 @@ class ResultParser {
             if (step.result.status == "failed") {
                 testResult.passing = false
             }
-            duration += step.result.duration
+            if(step.result.duration){
+                duration += step.result.duration
+            }
             testResult."${currentStatement}" += "${step.keyword}${step.name}"
         }
         testResult.durationMillis = (int) (duration / MILLION)

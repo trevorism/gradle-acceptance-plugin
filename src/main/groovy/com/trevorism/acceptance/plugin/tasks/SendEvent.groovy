@@ -13,23 +13,32 @@ import org.gradle.api.tasks.TaskAction
  */
 class SendEvent extends DefaultTask{
 
+    EventProducer<TestResult> producer = new PingingEventProducer<>()
+
     @TaskAction
     void sendEvents(){
-        EventProducer<TestResult> producer = new PingingEventProducer<>()
         String directory = "${project.buildDir.path}/test-results/cucumber/acceptance"
         project.file(directory).eachFile{
             if(it.name.endsWith("feature.json")){
-                List<TestResult> results = ResultParser.parseResult(it.text)
-                results.each{ TestResult result ->
-                    try{
-                        producer.sendEvent("testresult", result)
-                    }catch (Exception e){
-                        e.printStackTrace()
-                    }
-                }
+                parseFile(it)
             }
         }
+    }
 
+    private void parseFile(File file) {
+        List<TestResult> results = ResultParser.parseResult(file.text)
+        results.each { TestResult result ->
+            sendEvent(result)
+        }
+    }
+
+    private void sendEvent(TestResult result) {
+        try {
+            result.projectName = project.name
+            producer.sendEvent("testresult", result)
+        } catch (Exception e) {
+            project.logger.error("Error sending event", e)
+        }
     }
 
 }
