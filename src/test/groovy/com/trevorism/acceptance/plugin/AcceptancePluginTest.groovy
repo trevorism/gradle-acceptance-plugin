@@ -20,17 +20,6 @@ class AcceptancePluginTest {
     static Project newProject(){
         Project project = ProjectBuilder.builder().withName("foo").build()
         project.with {
-            buildscript {
-                repositories {
-                    maven {
-                        url "https://plugins.gradle.org/m2/"
-                    }
-                }
-                dependencies {
-                    classpath "com.commercehub:gradle-cucumber-jvm-plugin:0.13"
-                }
-            }
-
             apply plugin: "com.trevorism.gradle.acceptance"
         }
         return project
