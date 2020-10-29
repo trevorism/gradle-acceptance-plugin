@@ -22,7 +22,7 @@ buildscript {
         }
     }
 	dependencies {
-        classpath 'com.trevorism:gradle-acceptance-plugin:2.0.0'
+        classpath 'com.trevorism:gradle-acceptance-plugin:2.1.0'
     }
 }
 

@@ -4,6 +4,7 @@ import com.trevorism.acceptance.plugin.util.ResultParser
 import com.trevorism.acceptance.plugin.util.TestResult
 import com.trevorism.event.EventProducer
 import com.trevorism.event.PingingEventProducer
+import com.trevorism.https.DefaultInternalTokenSecureHttpClient
 import org.gradle.api.DefaultTask
 import org.gradle.api.tasks.TaskAction
 
@@ -12,9 +13,10 @@ import org.gradle.api.tasks.TaskAction
  */
 class SendEvent extends DefaultTask{
 
+    EventProducer<TestResult> producer = new PingingEventProducer<TestResult>(new DefaultInternalTokenSecureHttpClient())
+
     @TaskAction
     void sendAllEvents(){
-        EventProducer<TestResult> producer = new PingingEventProducer<>()
         String resultFile = "${project.buildDir.path}/test-results/cucumber/acceptance.json"
         List<TestResult> results = ResultParser.parseResult(project.file(resultFile).text)
         results.each { TestResult result ->

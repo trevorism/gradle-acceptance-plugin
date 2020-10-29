@@ -9,7 +9,7 @@ buildscript {
     }
 }
 
-plugins{
+plugins {
     id "groovy"
     id "jacoco"
 }
@@ -27,11 +27,21 @@ repositories {
 }
 
 dependencies {
-	implementation gradleApi()
-    implementation 'com.trevorism:eventhub-client:1.4.2'
+    implementation gradleApi()
+    implementation 'com.trevorism:eventhub-client:2.3.0'
+    implementation 'com.trevorism:secure-http-utils:0.5.0'
     implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'org.codehaus.groovy:groovy-all:2.5.8'
-	testImplementation 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.13.1'
 }
 
 check.dependsOn "jacocoTestReport"
+
+processResources {
+    doLast {
+        copy {
+            from "${System.getProperty("user.home")}/${project.name}/secrets.properties"
+            into "build/resources/main"
+        }
+    }
+}
