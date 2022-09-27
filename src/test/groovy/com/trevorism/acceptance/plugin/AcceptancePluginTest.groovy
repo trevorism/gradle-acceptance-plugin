@@ -1,6 +1,5 @@
 package com.trevorism.acceptance.plugin
 
-import com.trevorism.acceptance.plugin.tasks.SendEvent
 import org.gradle.api.Project
 import org.gradle.testfixtures.ProjectBuilder
 import org.junit.Test
@@ -13,7 +12,7 @@ class AcceptancePluginTest {
     @Test
     void testApply() {
         Project project = newProject()
-        assert project.tasks.findByPath("sendAcceptanceTestEvents") instanceof SendEvent
+        assert project.tasks.findByPath("cucumber")
         assert project.tasks.findByPath("acceptance")
     }
 

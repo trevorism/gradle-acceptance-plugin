@@ -7,6 +7,7 @@ import org.junit.Test
  * @author tbrooks
  */
 class ResultParserTest {
+
     @Test
     void testParseError(){
         List<TestResult> results = ResultParser.parseResult(SampleDataProvider.provideError())

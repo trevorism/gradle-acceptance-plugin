@@ -2,7 +2,6 @@ package com.trevorism.acceptance.plugin
 
 import com.trevorism.acceptance.plugin.ext.AcceptanceTestSettings
 import com.trevorism.acceptance.plugin.tasks.AcceptanceTask
-import com.trevorism.acceptance.plugin.tasks.SendEvent
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
@@ -37,16 +36,10 @@ class AcceptancePlugin implements Plugin<Project> {
             dependsOn("assemble", project.sourceSets.acceptance.classesTaskName)
         }
 
-        project.task("sendAcceptanceTestEvents", type: SendEvent) {
-            group = ACCEPTANCE_GROUP
-            description = "Sends events for passing and failing tests"
-            dependsOn "cucumber"
-        }
-
         project.task("acceptance") {
             group = ACCEPTANCE_GROUP
             description = "Orchestrates acceptance tests"
-            dependsOn("cucumber", "sendAcceptanceTestEvents")
+            dependsOn("cucumber")
         }
 
     }
