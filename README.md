@@ -9,7 +9,6 @@ Runs cucumber acceptances tests. Compatible with gradle 6 and io.cucumber:cucumb
 
 Current [Version](https://github.com/trevorism/gradle-acceptance-plugin/releases/latest)
 
-
 Create a project with an src/acceptance folder. Feature files (*.feature) go in src/acceptance/resources/features. 
 Step definitions belong in src/acceptance/groovy/<package name>
 
@@ -42,8 +41,6 @@ acceptanceSettings{
 
 dependencies{
     acceptanceImplementation 'io.cucumber:cucumber-groovy:4.7.1'
-    acceptanceImplementation 'com.trevorism:http-utils:1.0.2'
-    acceptanceImplementation 'org.apache.httpcomponents:httpclient:4.5.10'
 }
 
 ```
