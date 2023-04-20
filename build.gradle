@@ -30,8 +30,8 @@ repositories {
 
 dependencies {
     implementation gradleApi()
-    implementation 'com.google.code.gson:gson:2.9.1'
-    implementation 'org.codehaus.groovy:groovy-all:2.5.15'
+    implementation 'com.google.code.gson:gson:2.10.1'
+    implementation 'org.codehaus.groovy:groovy-all:2.5.22'
     testImplementation 'junit:junit:4.13.2'
 }
 

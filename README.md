@@ -3,7 +3,7 @@
 ![GitHub last commit](https://img.shields.io/github/last-commit/trevorism/gradle-acceptance-plugin)
 ![GitHub language count](https://img.shields.io/github/languages/count/trevorism/gradle-acceptance-plugin)
 ![GitHub top language](https://img.shields.io/github/languages/top/trevorism/gradle-acceptance-plugin)
-
+![Release](https://img.shields.io/github/v/release/trevorism/gradle-acceptance-plugin?display_name=tag)
 
 Runs cucumber acceptances tests. Compatible with gradle 6 and io.cucumber:cucumber-groovy:4.7.x
 
@@ -27,7 +27,7 @@ buildscript {
         }
     }
 	dependencies {
-        classpath 'com.trevorism:gradle-acceptance-plugin:2.2.0'
+        classpath 'com.trevorism:gradle-acceptance-plugin:2.3.0'
     }
 }
 
@@ -40,7 +40,7 @@ acceptanceSettings{
 }
 
 dependencies{
-    acceptanceImplementation 'io.cucumber:cucumber-groovy:4.7.1'
+    acceptanceImplementation 'io.cucumber:cucumber-groovy:6.10.4'
 }
 
 ```
