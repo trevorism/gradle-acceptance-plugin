@@ -5,7 +5,7 @@
 ![GitHub top language](https://img.shields.io/github/languages/top/trevorism/gradle-acceptance-plugin)
 ![Release](https://img.shields.io/github/v/release/trevorism/gradle-acceptance-plugin?display_name=tag)
 
-Runs cucumber acceptances tests. Compatible with gradle 6 and io.cucumber:cucumber-groovy:4.7.x
+Runs cucumber acceptances tests. 
 
 Current [Version](https://github.com/trevorism/gradle-acceptance-plugin/releases/latest)
 
