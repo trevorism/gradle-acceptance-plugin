@@ -27,14 +27,14 @@ class SendAcceptanceEvent extends DefaultTask{
             logger.warn("No acceptance test results found")
             return
         }
-        
+
         List<TestResult> results = new ResultParser().parseResult(acceptanceJson)
         TestEvent testEvent = new TestEvent(
                 service: project.name,
                 kind: "cucumber",
                 success: results.every { it.passing },
                 numberOfTests: results.size(),
-                durationMillis: results.sum { it.durationMillis },
+                durationMillis: Math.abs(results.sum { it.durationMillis }),
                 date: new Date()
         )
 
