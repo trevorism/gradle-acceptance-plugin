@@ -8,6 +8,7 @@ import com.trevorism.acceptance.plugin.util.TestResult
 import groovyx.net.http.HTTPBuilder
 import groovyx.net.http.Method
 import org.gradle.api.DefaultTask
+import org.gradle.api.GradleException
 import org.gradle.api.tasks.TaskAction
 
 import static groovyx.net.http.Method.POST
@@ -19,7 +20,14 @@ class SendAcceptanceEvent extends DefaultTask{
 
     @TaskAction
     void sendEvent() {
-        String acceptanceJson = project.layout.buildDirectory.file("test-results/cucumber/acceptance.json").text
+        def fileProvider = project.layout.buildDirectory.file("test-results/cucumber/acceptance.json")
+        String acceptanceJson = fileProvider?.get()?.getAsFile()?.text
+
+        if(!acceptanceJson){
+            logger.warn("No acceptance test results found")
+            return
+        }
+        
         List<TestResult> results = new ResultParser().parseResult(acceptanceJson)
         TestEvent testEvent = new TestEvent(
                 service: project.name,
