@@ -6,15 +6,13 @@ import com.trevorism.acceptance.plugin.util.ResultParser
 import com.trevorism.acceptance.plugin.util.TestEvent
 import com.trevorism.acceptance.plugin.util.TestResult
 import groovyx.net.http.HTTPBuilder
-import groovyx.net.http.Method
 import org.gradle.api.DefaultTask
-import org.gradle.api.GradleException
 import org.gradle.api.tasks.TaskAction
 
-import static groovyx.net.http.Method.POST
 import static groovyx.net.http.ContentType.JSON
+import static groovyx.net.http.Method.POST
 
-class SendAcceptanceEvent extends DefaultTask{
+class SendAcceptanceEvent extends DefaultTask {
 
     private final Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'").create()
 
@@ -23,7 +21,7 @@ class SendAcceptanceEvent extends DefaultTask{
         def fileProvider = project.layout.buildDirectory.file("test-results/cucumber/acceptance.json")
         String acceptanceJson = fileProvider?.get()?.getAsFile()?.text
 
-        if(!acceptanceJson){
+        if (!acceptanceJson) {
             logger.warn("No acceptance test results found")
             return
         }
