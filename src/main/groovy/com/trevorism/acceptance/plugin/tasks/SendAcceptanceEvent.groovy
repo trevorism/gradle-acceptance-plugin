@@ -28,22 +28,26 @@ class SendAcceptanceEvent extends DefaultTask{
             return
         }
 
-        List<TestResult> results = new ResultParser().parseResult(acceptanceJson)
-        TestEvent testEvent = new TestEvent(
-                service: project.name,
-                kind: "cucumber",
-                success: results.every { it.passing },
-                numberOfTests: results.size(),
-                durationMillis: Math.abs(results.sum { it.durationMillis }),
-                date: new Date()
-        )
+        try {
+            List<TestResult> results = new ResultParser().parseResult(acceptanceJson)
+            TestEvent testEvent = new TestEvent(
+                    service: project.name,
+                    kind: "cucumber",
+                    success: results.every { it.passing },
+                    numberOfTests: results.size(),
+                    durationMillis: Math.abs(results.sum { it.durationMillis }),
+                    date: new Date()
+            )
 
-        String message = gson.toJson(testEvent)
-        HTTPBuilder http = new HTTPBuilder("https://event.data.trevorism.com/event/testResult")
-        http.request(POST, JSON) { req ->
-            body = message
-            response.success = { resp, json ->
+            String message = gson.toJson(testEvent)
+            HTTPBuilder http = new HTTPBuilder("https://event.data.trevorism.com/event/testResult")
+            http.request(POST, JSON) { req ->
+                body = message
+                response.success = { resp, json ->
+                }
             }
+        } catch (Exception e) {
+            logger.warn("Failed to send acceptance test results: ${e.message}")
         }
     }
 }
