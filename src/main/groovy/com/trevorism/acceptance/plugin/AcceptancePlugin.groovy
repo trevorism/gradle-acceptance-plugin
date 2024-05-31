@@ -35,12 +35,6 @@ class AcceptancePlugin implements Plugin<Project> {
             group = ACCEPTANCE_GROUP
             description = "Runs cucumber tests in hte acceptance source set"
             dependsOn("assemble", project.sourceSets.acceptance.classesTaskName)
-
-            doLast {
-                if (project.gradle.startParameter.taskNames.contains("acceptance")) {
-                    finalizedBy("sendAcceptanceEvent")
-                }
-            }
         }
 
         project.task("sendAcceptanceEvent", type: SendAcceptanceEvent) {
@@ -52,6 +46,9 @@ class AcceptancePlugin implements Plugin<Project> {
             group = ACCEPTANCE_GROUP
             description = "Orchestrates acceptance tests"
             dependsOn("cucumber")
+            project.tasks.named("cucumber").configure {
+                finalizedBy("sendAcceptanceEvent")
+            }
         }
 
     }
