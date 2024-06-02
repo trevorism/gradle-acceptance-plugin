@@ -35,6 +35,11 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
 }
 
+tasks.withType(Test) {
+    // This is needed locally for some reason but not on CI to avoid 'Could not inject synthetic classes.'
+    //jvmArgs('--add-opens=java.base/java.lang=ALL-UNNAMED')
+}
+
 jacocoTestCoverageVerification {
     violationRules {
         rule {
