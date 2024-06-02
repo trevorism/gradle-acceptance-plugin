@@ -35,4 +35,20 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
 }
 
+tasks.withType(Test) {
+    jvmArgs('--add-opens=java.base/java.lang=ALL-UNNAMED')
+}
+
+jacocoTestCoverageVerification {
+    violationRules {
+        rule {
+            limit {
+                minimum = 0.4
+            }
+        }
+    }
+}
+
+
 check.dependsOn "jacocoTestReport"
+build.dependsOn "jacocoTestCoverageVerification"
