@@ -2,11 +2,7 @@ package com.trevorism.acceptance.plugin.util
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import groovyx.net.http.HTTPBuilder
-import org.junit.Test
-
-import static groovyx.net.http.ContentType.JSON
-import static groovyx.net.http.Method.POST
+import org.junit.jupiter.api.Test
 
 /**
  * @author tbrooks
@@ -23,31 +19,6 @@ class ResultParserTest {
         assert json.contains("Given the datastore application is alive")
 
     }
-
-    @Test
-    void testPost() {
-        List<TestResult> results = ResultParser.parseResult(SampleDataProvider.provideGivenWhenThen())
-
-        TestEvent testEvent = new TestEvent(
-                service: "xyz",
-                kind: "cucumber",
-                success: results.every { it.passing },
-                numberOfTests: results.size(),
-                durationMillis: results.sum { it.durationMillis },
-                date: new Date()
-        )
-        Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'").create()
-        String message = gson.toJson(testEvent)
-        HTTPBuilder http = new HTTPBuilder("https://endpoint-tester.testing.trevorism.com/api/json")
-        http.request(POST, JSON) { req ->
-            body = message
-            response.success = { resp, json ->
-                println "Query response: $json"
-            }
-        }
-
-    }
-
 
     @Test
     void testParseResult() {

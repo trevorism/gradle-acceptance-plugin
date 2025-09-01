@@ -16,6 +16,7 @@ buildscript {
 
 plugins{
     id "groovy"
+    id 'java-gradle-plugin'
     id "jacoco"
 }
 
@@ -30,14 +31,16 @@ repositories {
 
 dependencies {
     implementation gradleApi()
-    implementation 'com.google.code.gson:gson:2.11.0'
+    implementation 'com.google.code.gson:gson:2.13.1'
     implementation 'org.codehaus.groovy.modules.http-builder:http-builder:0.7.1'
-    testImplementation 'junit:junit:4.13.2'
+    testImplementation gradleTestKit()
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.13.4'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.13.4'
+    testRuntimeOnly "org.junit.platform:junit-platform-launcher"
 }
 
-tasks.withType(Test) {
-    // This is needed locally for some reason but not on CI to avoid 'Could not inject synthetic classes.'
-    //jvmArgs('--add-opens=java.base/java.lang=ALL-UNNAMED')
+test {
+    useJUnitPlatform()
 }
 
 jacocoTestCoverageVerification {

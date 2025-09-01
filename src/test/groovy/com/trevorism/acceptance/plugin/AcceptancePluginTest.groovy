@@ -1,8 +1,8 @@
 package com.trevorism.acceptance.plugin
 
 import org.gradle.api.Project
-import org.junit.Test
 import org.gradle.testfixtures.ProjectBuilder
+import org.junit.jupiter.api.Test
 
 class AcceptancePluginTest {
 
