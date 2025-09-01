@@ -5,12 +5,15 @@ import com.google.gson.GsonBuilder
 import com.trevorism.acceptance.plugin.util.ResultParser
 import com.trevorism.acceptance.plugin.util.TestEvent
 import com.trevorism.acceptance.plugin.util.TestResult
-import groovyx.net.http.HTTPBuilder
+import org.apache.hc.client5.http.classic.methods.HttpPost
+import org.apache.hc.client5.http.impl.classic.BasicHttpClientResponseHandler
+import org.apache.hc.client5.http.impl.classic.CloseableHttpClient
+import org.apache.hc.client5.http.impl.classic.HttpClients
+import org.apache.hc.core5.http.ContentType
+import org.apache.hc.core5.http.io.entity.StringEntity
 import org.gradle.api.DefaultTask
 import org.gradle.api.tasks.TaskAction
 
-import static groovyx.net.http.ContentType.JSON
-import static groovyx.net.http.Method.POST
 
 class SendAcceptanceEvent extends DefaultTask {
 
@@ -38,12 +41,11 @@ class SendAcceptanceEvent extends DefaultTask {
             )
 
             String message = gson.toJson(testEvent)
-            HTTPBuilder http = new HTTPBuilder("https://event.data.trevorism.com/event/testResult")
-            http.request(POST, JSON) { req ->
-                body = message
-                response.success = { resp, json ->
-                }
-            }
+            CloseableHttpClient httpClient = HttpClients.createDefault()
+            def post = new HttpPost("https://event.data.trevorism.com/event/testResult")
+            post.setEntity(new StringEntity(message, ContentType.APPLICATION_JSON))
+            def response = httpClient.execute(post, new BasicHttpClientResponseHandler())
+            logger.info("Response from event service: $response")
         } catch (Exception e) {
             logger.warn("Failed to send acceptance test results: ${e.message}")
         }
