@@ -468,6 +468,130 @@ class SampleDataProvider {
 ]"""
     }
 
+    static String provideUndefinedSteps(){
+        return """[
+  {
+    "line": 1,
+    "elements": [
+      {
+        "start_timestamp": "2026-06-30T15:50:30.457Z",
+        "line": 3,
+        "name": "GET /api/entry returns 200 and a JSON array",
+        "description": "",
+        "id": "changelog-entry-api;get-/api/entry-returns-200-and-a-json-array",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "status": "undefined"
+            },
+            "line": 4,
+            "name": "I send a GET request to /api/entry",
+            "match": {},
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 5,
+            "name": "the response status is 200",
+            "match": {},
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 6,
+            "name": "the response body is a JSON array",
+            "match": {},
+            "keyword": "And "
+          }
+        ]
+      }
+    ],
+    "name": "Changelog Entry API",
+    "description": "",
+    "id": "changelog-entry-api",
+    "keyword": "Feature",
+    "uri": "file:src/acceptance/resources/features/changelog-entry.feature",
+    "tags": []
+  }
+]"""
+    }
+
+    static String provideMultipleFeatures(){
+        return """[
+  {
+    "line": 1,
+    "elements": [
+      {
+        "line": 4,
+        "name": "Passing scenario",
+        "description": "",
+        "id": "first-feature;passing-scenario",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 100000000,
+              "status": "passed"
+            },
+            "line": 5,
+            "name": "the application is alive",
+            "match": {
+              "location": "StepDefinition.groovy:8"
+            },
+            "keyword": "Given "
+          }
+        ]
+      }
+    ],
+    "name": "First Feature",
+    "description": "",
+    "id": "first-feature",
+    "keyword": "Feature",
+    "uri": "features/First.feature"
+  },
+  {
+    "line": 1,
+    "elements": [
+      {
+        "line": 4,
+        "name": "Failing scenario",
+        "description": "",
+        "id": "second-feature;failing-scenario",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 50000000,
+              "error_message": "Assertion failed:",
+              "status": "failed"
+            },
+            "line": 5,
+            "name": "the assertion holds",
+            "match": {
+              "location": "StepDefinition.groovy:12"
+            },
+            "keyword": "Then "
+          }
+        ]
+      }
+    ],
+    "name": "Second Feature",
+    "description": "",
+    "id": "second-feature",
+    "keyword": "Feature",
+    "uri": "features/Second.feature"
+  }
+]"""
+    }
+
     static String provideGivenWhenThen(){
       return """[
   {

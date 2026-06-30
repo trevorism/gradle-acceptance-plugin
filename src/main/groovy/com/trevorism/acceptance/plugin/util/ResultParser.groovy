@@ -11,14 +11,17 @@ class ResultParser {
 
     static List<TestResult> parseResult(String jsonText){
         JsonSlurper slurper = new JsonSlurper()
-        def result = slurper.parseText(jsonText)[0]
-        String feature = result.name
-        def elements = result.elements
+        def features = slurper.parseText(jsonText)
 
-        elements.collect { element ->
-            TestResult testResult = initalizeTestResult(element.name, feature)
-            setTestResultValues(testResult, element)
-            return testResult
+        features.collectMany { result ->
+            String feature = result.name
+            def elements = result.elements ?: []
+
+            elements.collect { element ->
+                TestResult testResult = initalizeTestResult(element.name, feature)
+                setTestResultValues(testResult, element)
+                return testResult
+            }
         }
     }
 
@@ -30,7 +33,7 @@ class ResultParser {
 
             if (step.keyword == "And ")
                 testResult."${currentStatement}" += " "
-            if (step.result.status == "failed") {
+            if (step.result.status != "passed") {
                 testResult.passing = false
             }
             if(step.result.duration){

@@ -31,6 +31,25 @@ class ResultParserTest {
     }
 
     @Test
+    void testParseResultWithUndefinedStepsIsNotPassing() {
+        List<TestResult> results = ResultParser.parseResult(SampleDataProvider.provideUndefinedSteps())
+
+        assert results.size() == 1
+        assert !results[0].passing
+        assert results.every { it.passing } == false
+    }
+
+    @Test
+    void testParseResultAcrossMultipleFeatures() {
+        List<TestResult> results = ResultParser.parseResult(SampleDataProvider.provideMultipleFeatures())
+
+        assert results.size() == 2
+        assert results.every { it.passing } == false
+        assert results[0].passing
+        assert !results[1].passing
+    }
+
+    @Test
     void testParseResultWithAnds() {
         List<TestResult> results = ResultParser.parseResult(SampleDataProvider.provideGivenAndAnd())
 
