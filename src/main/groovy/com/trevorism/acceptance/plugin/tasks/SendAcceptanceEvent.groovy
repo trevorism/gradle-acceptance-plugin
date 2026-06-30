@@ -13,8 +13,9 @@ import org.apache.hc.core5.http.ContentType
 import org.apache.hc.core5.http.io.entity.StringEntity
 import org.gradle.api.DefaultTask
 import org.gradle.api.tasks.TaskAction
+import org.gradle.work.DisableCachingByDefault
 
-
+@DisableCachingByDefault(because = "This task sends acceptance test results to the event service and should not be cached.")
 class SendAcceptanceEvent extends DefaultTask {
 
     private final Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'").create()
