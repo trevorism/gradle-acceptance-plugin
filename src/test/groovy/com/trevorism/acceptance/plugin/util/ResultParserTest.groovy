@@ -40,6 +40,22 @@ class ResultParserTest {
     }
 
     @Test
+    void testParseResultWithSkippedStepsIsPassing() {
+        List<TestResult> results = ResultParser.parseResult(SampleDataProvider.provideAbortedScenario())
+
+        assert results.size() == 2
+        assert results.every { it.passing }
+    }
+
+    @Test
+    void testParseResultDurationLongerThanIntNanosecondsDoesNotOverflow() {
+        List<TestResult> results = ResultParser.parseResult(SampleDataProvider.provideAbortedScenario())
+
+        assert results[0].durationMillis == 3500
+        assert results[1].durationMillis == 1450
+    }
+
+    @Test
     void testParseResultAcrossMultipleFeatures() {
         List<TestResult> results = ResultParser.parseResult(SampleDataProvider.provideMultipleFeatures())
 

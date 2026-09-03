@@ -37,7 +37,7 @@ class SendAcceptanceEvent extends DefaultTask {
                     kind: "cucumber",
                     success: results.every { it.passing },
                     numberOfTests: results.size(),
-                    durationMillis: Math.abs(results.sum { it.durationMillis }),
+                    durationMillis: results.sum(0) { it.durationMillis },
                     date: new Date()
             )
 

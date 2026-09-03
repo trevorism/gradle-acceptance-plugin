@@ -816,4 +816,87 @@ class SampleDataProvider {
   }
 ]"""
     }
+
+    static String provideAbortedScenario(){
+        return """[
+  {
+    "line": 1,
+    "elements": [
+      {
+        "line": 4,
+        "name": "HTTP GET on the ContextRoot",
+        "description": "",
+        "id": "context-root-of-this-api;http-get-on-the-contextroot",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 3500000000,
+              "status": "passed"
+            },
+            "line": 5,
+            "name": "the dahr application is alive",
+            "match": {
+              "location": "ContentRootDefinitions.groovy:12"
+            },
+            "keyword": "Given "
+          }
+        ]
+      },
+      {
+        "line": 10,
+        "name": "A review is created, drafted, submitted and reported on",
+        "description": "",
+        "id": "context-root-of-this-api;a-review-is-created",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 1200000000,
+              "status": "passed"
+            },
+            "line": 11,
+            "name": "the dahr application is alive",
+            "match": {
+              "location": "ContentRootDefinitions.groovy:12"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 250000000,
+              "error_message": "org.opentest4j.TestAbortedException: No review cycle is open",
+              "status": "skipped"
+            },
+            "line": 12,
+            "name": "a review cycle is open",
+            "match": {
+              "location": "ReviewDefinitions.groovy:44"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 13,
+            "name": "the employee roster is available",
+            "match": {
+              "location": "ReviewDefinitions.groovy:53"
+            },
+            "keyword": "And "
+          }
+        ]
+      }
+    ],
+    "name": "Context Root of this API",
+    "description": "",
+    "id": "context-root-of-this-api",
+    "keyword": "Feature",
+    "uri": "features/ContextRoot.feature"
+  }
+]"""
+    }
 }

@@ -8,6 +8,7 @@ import groovy.json.JsonSlurper
 class ResultParser {
 
     static final int MILLION = 1000 * 1000
+    static final List<String> NON_FAILING_STATUSES = ["passed", "skipped"]
 
     static List<TestResult> parseResult(String jsonText){
         JsonSlurper slurper = new JsonSlurper()
@@ -26,14 +27,14 @@ class ResultParser {
     }
 
     private static void setTestResultValues(TestResult testResult, element) {
-        int duration = 0
+        long duration = 0
         String currentStatement
         element.steps.each { step ->
             currentStatement = getCurrentStatement(step.keyword, currentStatement)
 
             if (step.keyword == "And ")
                 testResult."${currentStatement}" += " "
-            if (step.result.status != "passed") {
+            if (!NON_FAILING_STATUSES.contains(step.result.status)) {
                 testResult.passing = false
             }
             if(step.result.duration){
